@@ -11,10 +11,7 @@
     </div>
   <% end %>
 
-  <td class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </td>
+  <%= render "movies/form_title", form: form %>
 
   <td class="field">
     <%= form.label :year %>

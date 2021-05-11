@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   resources :actors
   resources :directors
   resources :movies
+
+  get "movies/:id/title/edit" => "movies#edit_title", as: :edit_title
+
 end

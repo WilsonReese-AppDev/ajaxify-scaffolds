@@ -15,8 +15,11 @@
   </thead>
 
   <tbody>
+    <tr>
+      
+    </tr>
     <% @movies.each do |movie| %>
-      <tr>
+      <tr id="<%= dom_id(movie) %>">
         <td><%= movie.title %></td>
         <td><%= movie.description %></td>
         <td><%= movie.duration %></td>
@@ -24,7 +27,7 @@
         <td><%= movie.director_id %></td>
         <td><%= link_to 'Show', movie %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
       </tr>
     <% end %>
   </tbody>

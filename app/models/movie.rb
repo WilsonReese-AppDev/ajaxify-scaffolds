@@ -17,4 +17,6 @@ class Movie < ApplicationRecord
   has_many :characters, dependent: :destroy
   has_many :actors, through: :characters
   validates :title, presence: true
+
+  # scope :default_order, -> { order(created_at: :desc) }
 end

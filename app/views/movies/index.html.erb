@@ -6,27 +6,27 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Description</th>
-      <th>Duration</th>
       <th>Year</th>
       <th>Director</th>
+      <th>Description</th>
+      <th>Duration</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
-      
+      <%= render "movies/form", movie: Movie.new %>
     </tr>
-    <% @movies.each do |movie| %>
+  </tbody>
+  <tbody>
+    <% @movies.order(created_at: :desc).each do |movie| %>
       <tr id="<%= dom_id(movie) %>">
-        <td><%= movie.title %></td>
-        <td><%= movie.description %></td>
-        <td><%= movie.duration %></td>
-        <td><%= movie.year %></td>
-        <td><%= movie.director_id %></td>
-        <td><%= link_to 'Show', movie %></td>
-        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+        <td id="<%= dom_id(movie) %>_title"><%= movie.title %></td>
+        <td id="<%= dom_id(movie) %>_year"><%= movie.year %></td>
+        <td id="<%= dom_id(movie) %>_director"><%= movie.director.name %></td>
+        <td id="<%= dom_id(movie) %>_description"><%= movie.description %></td>
+        <td id="<%= dom_id(movie) %>_duration"><%= movie.duration %> minutes</td>
         <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
       </tr>
     <% end %>

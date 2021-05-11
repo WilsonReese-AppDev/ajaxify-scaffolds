@@ -13,26 +13,23 @@
       <th colspan="3"></th>
     </tr>
   </thead>
-  
-  <tbody>
-    <tr>
-      <%= render "movies/form", movie: Movie.new %>
-    </tr>
-  </tbody>
-  <tbody>
-    <% @movies.order(created_at: :desc).each do |movie| %>
-      <tr id="<%= dom_id(movie) %>">
-        <td id="<%= dom_id(movie) %>_title">
-          <%= link_to edit_title_path(movie), remote: true do %>
-            <%= movie.title %>
-          <% end %>
-        </td>
-        <td id="<%= dom_id(movie) %>_year"><%= movie.year %></td>
-        <td id="<%= dom_id(movie) %>_director"><%= movie.director.name %></td>
-        <td id="<%= dom_id(movie) %>_description"><%= movie.description %></td>
-        <td id="<%= dom_id(movie) %>_duration"><%= movie.duration %> minutes</td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+
+  <%= form_with(model: Movie.new, local: false, id: "new_movie_form") do |form| %>
+
+    <tbody>
+      <tr>
+        <td><%=render "movies/form_title", form: form %></td>
+        <td><%=render "movies/form_year", form: form %></td>
+        <td><%=render "movies/form_director", form: form %></td>
+        <td><%=render "movies/form_description", form: form %></td>
+        <td><%=render "movies/form_duration", form: form %></td>
+        <td class=actions><%= form.submit %></td>
       </tr>
+    </tbody>
+  <% end %>
+  <tbody id="movies">
+    <% @movies.order(created_at: :desc).each do |movie| %>
+      <%= render movie %>
     <% end %>
   </tbody>
 </table>

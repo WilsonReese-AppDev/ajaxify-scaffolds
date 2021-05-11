@@ -1,0 +1,12 @@
+<tr id="<%= dom_id(movie) %>">
+  <td id="<%= dom_id(movie) %>_title">
+    <%= link_to edit_title_path(movie), remote: true do %>
+      <%= movie.title %>
+    <% end %>
+  </td>
+  <td id="<%= dom_id(movie) %>_year"><%= movie.year %></td>
+  <td id="<%= dom_id(movie) %>_director"><%= movie.director.name %></td>
+  <td id="<%= dom_id(movie) %>_description"><%= movie.description %></td>
+  <td id="<%= dom_id(movie) %>_duration"><%= movie.duration %> minutes</td>
+  <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+</tr>

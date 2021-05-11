@@ -20,6 +20,10 @@ class MoviesController < ApplicationController
   end
 
   def edit_title
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /movies or /movies.json

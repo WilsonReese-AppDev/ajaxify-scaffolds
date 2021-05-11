@@ -1,5 +1,6 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show edit update destroy edit_title]
+  before_action :set_movie, only: %i[ show edit update destroy edit_title edit_year edit_movie_director edit_description edit_duration]
+  before_action :format_edit_movie, only: %i[ edit_title edit_year edit_movie_director edit_description edit_duration ]
 
   # GET /movies or /movies.json
   def index
@@ -20,10 +21,18 @@ class MoviesController < ApplicationController
   end
 
   def edit_title
-    respond_to do |format|
-      format.html
-      format.js
-    end
+  end
+
+  def edit_year
+  end
+
+  def edit_movie_director
+  end
+  
+  def edit_description
+  end
+  
+  def edit_duration
   end
 
   # POST /movies or /movies.json
@@ -75,4 +84,11 @@ class MoviesController < ApplicationController
     def movie_params
       params.require(:movie).permit(:title, :description, :duration, :image, :year, :director_id)
     end
+
+    def format_edit_movie
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end 
 end

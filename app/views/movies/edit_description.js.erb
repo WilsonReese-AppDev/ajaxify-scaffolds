@@ -1,1 +1,1 @@
-$("#<%= dom_id(@movie) %>_description").replaceWith("hello");
+$("#<%= dom_id(@movie) %>_description").replaceWith("<%= j( render "/movies/form_description", form: nil) %>");

@@ -1,0 +1,12 @@
+<div id="<%= dom_id(movie) %>_description">
+  <details>
+    <summary>
+      Show Description
+    </summary>
+    <p><%= movie.description %></p>
+    <%= link_to edit_description_path(movie), remote: true do %>
+      Edit
+    <% end %>
+  </details>
+</div>
+

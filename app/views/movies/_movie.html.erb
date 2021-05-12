@@ -11,10 +11,8 @@
     <%= render "movies/movie_director", movie: movie %>
   </td>
 
-  <td id="<%= dom_id(movie) %>_description">
-    <%= link_to edit_description_path(movie), remote: true do %>
-      &#9658; Show Description
-    <% end %>
+  <td>
+    <%= render "movies/movie_description", movie: movie %>
   </td>
 
   <td id="<%= dom_id(movie) %>_duration">

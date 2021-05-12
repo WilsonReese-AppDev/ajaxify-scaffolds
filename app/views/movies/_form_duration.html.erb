@@ -1,2 +1,9 @@
 <%= form.label :duration %>
 <%= form.number_field :duration %>
+
+
+  <%= form_with(model: @movie, remote: true) do |f| %>
+    <div>
+      <%= f.text_field :title %>
+    </div>
+  <% end %>

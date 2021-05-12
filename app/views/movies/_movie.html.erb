@@ -1,8 +1,6 @@
 <tr id="<%= dom_id(movie) %>">
-  <td id="<%= dom_id(movie) %>_title">
-    <%= link_to edit_title_path(movie), remote: true do %>
-      <%= movie.title %>
-    <% end %>
+  <td>
+    <%= render "movies/movie_title", movie: movie%>
   </td>
 
   <td id="<%= dom_id(movie) %>_year">

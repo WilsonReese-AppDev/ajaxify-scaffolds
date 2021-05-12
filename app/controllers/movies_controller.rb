@@ -4,7 +4,7 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+    @movies = Movie.all.order(id: :desc)
   end
 
   # GET /movies/1 or /movies/1.json
@@ -55,8 +55,13 @@ class MoviesController < ApplicationController
   def update
     respond_to do |format|
       if @movie.update(movie_params)
-        format.html { redirect_to @movie, notice: "Movie was successfully updated." }
+        format.html { redirect_back fallback_location: root_url, notice: "Movie was successfully updated." }
         format.json { render :show, status: :ok, location: @movie }
+        format.js do
+          if movie_params.fetch(:title)
+            render template: "movies/update_title.js.erb"
+          end
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @movie.errors, status: :unprocessable_entity }

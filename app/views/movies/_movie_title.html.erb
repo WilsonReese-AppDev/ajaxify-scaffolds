@@ -1,0 +1,5 @@
+<div id="<%= dom_id(movie) %>_title">
+  <%= link_to edit_title_path(movie), remote: true do %>
+    <%= movie.title %>
+  <% end %>
+</div>

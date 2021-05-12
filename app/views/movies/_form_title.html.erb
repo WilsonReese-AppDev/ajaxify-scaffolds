@@ -1,2 +1,13 @@
-<%= form.label :title %>
-<%= form.text_field :title %>
+<% if form %>
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+<% else %>
+  <div id="<%= dom_id(@movie) %>_title_form">
+    <%= form_with(model: @movie, local: false) do |f| %>
+      <div>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

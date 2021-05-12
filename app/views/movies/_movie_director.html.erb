@@ -1,0 +1,5 @@
+<div id="<%= dom_id(movie) %>_director">
+  <%= link_to edit_movie_director_path(movie), remote: true do %>
+    <%= movie.director.name %>
+  <% end %>
+</div>

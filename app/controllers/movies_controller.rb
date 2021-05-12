@@ -65,6 +65,10 @@ class MoviesController < ApplicationController
           format.js do
             render template: "movies/update_year.js.erb"
           end
+        elsif movie_params.include? :director_id
+          format.js do
+            render template: "movies/update_director.js.erb"
+          end
         end
       else
         format.html { render :edit, status: :unprocessable_entity }

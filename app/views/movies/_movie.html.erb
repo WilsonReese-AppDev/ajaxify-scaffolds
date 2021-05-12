@@ -15,10 +15,8 @@
     <%= render "movies/movie_description", movie: movie %>
   </td>
 
-  <td id="<%= dom_id(movie) %>_duration">
-    <%= link_to edit_duration_path(movie), remote: true do %>
-      <%= movie.duration %> minutes
-    <% end %>
+  <td>
+    <%= render "movies/movie_duration", movie: movie %>
   </td>
 
   <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>

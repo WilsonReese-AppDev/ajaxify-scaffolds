@@ -1,0 +1,2 @@
+console.log("<%=dom_id(@movie)%>_duration_form")
+$("#<%= dom_id(@movie) %>_duration_form").replaceWith("<%= j(render "movies/movie_duration", movie: @movie )%>");

@@ -3,10 +3,8 @@
     <%= render "movies/movie_title", movie: movie%>
   </td>
 
-  <td id="<%= dom_id(movie) %>_year">
-    <%= link_to edit_year_path(movie), remote: true do %>
-      <%= movie.year %>
-    <% end %>
+  <td>
+    <%= render "movies/movie_year", movie: movie %>
   </td>
 
   <td id="<%= dom_id(movie) %>_director">

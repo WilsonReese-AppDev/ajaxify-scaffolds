@@ -57,9 +57,13 @@ class MoviesController < ApplicationController
       if @movie.update(movie_params)
         format.html { redirect_back fallback_location: root_url, notice: "Movie was successfully updated." }
         format.json { render :show, status: :ok, location: @movie }
-        format.js do
-          if movie_params.fetch(:title)
+        if movie_params.include? :title
+          format.js do
             render template: "movies/update_title.js.erb"
+          end
+        elsif movie_params.include? :year
+          format.js do
+            render template: "movies/update_year.js.erb"
           end
         end
       else

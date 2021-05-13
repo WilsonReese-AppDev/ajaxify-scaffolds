@@ -1,9 +1,10 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: %i[ show edit update destroy ]
+  before_action :set_movie, only: %i[ show edit update destroy edit_title edit_year edit_movie_director edit_description edit_duration]
+  before_action :format_edit_movie, only: %i[ edit_title edit_year edit_movie_director edit_description edit_duration ]
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+    @movies = Movie.all.order(id: :desc)
   end
 
   # GET /movies/1 or /movies/1.json
@@ -19,14 +20,30 @@ class MoviesController < ApplicationController
   def edit
   end
 
+  def edit_title
+  end
+
+  def edit_year
+  end
+
+  def edit_movie_director
+  end
+  
+  def edit_description
+  end
+  
+  def edit_duration
+  end
+
   # POST /movies or /movies.json
   def create
     @movie = Movie.new(movie_params)
 
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to @movie, notice: "Movie was successfully created." }
+        format.html { redirect_back fallback_location: root_path, notice: "Movie was successfully created." }
         format.json { render :show, status: :created, location: @movie }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
@@ -38,8 +55,29 @@ class MoviesController < ApplicationController
   def update
     respond_to do |format|
       if @movie.update(movie_params)
-        format.html { redirect_to @movie, notice: "Movie was successfully updated." }
+        format.html { redirect_back fallback_location: root_url, notice: "Movie was successfully updated." }
         format.json { render :show, status: :ok, location: @movie }
+        if movie_params.include? :title
+          format.js do
+            render template: "movies/update_title.js.erb"
+          end
+        elsif movie_params.include? :year
+          format.js do
+            render template: "movies/update_year.js.erb"
+          end
+        elsif movie_params.include? :director_id
+          format.js do
+            render template: "movies/update_director.js.erb"
+          end
+        elsif movie_params.include? :description
+          format.js do
+            render template: "movies/update_description.js.erb"
+          end
+        elsif movie_params.include? :duration
+          format.js do
+            render template: "movies/update_duration.js.erb"
+          end          
+        end
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
@@ -53,6 +91,7 @@ class MoviesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -66,4 +105,11 @@ class MoviesController < ApplicationController
     def movie_params
       params.require(:movie).permit(:title, :description, :duration, :image, :year, :director_id)
     end
+
+    def format_edit_movie
+      respond_to do |format|
+        format.html
+        format.js
+      end
+    end 
 end

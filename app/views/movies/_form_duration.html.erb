@@ -1,0 +1,13 @@
+<% if form %>
+  <%= form.label :duration %>
+  <%= form.number_field :duration %>
+<% else %>
+  <div id="<%= dom_id(@movie) %>_duration_form">
+    <%= form_with(model: @movie, local: false) do |f| %>
+      <div>
+        <%= f.label :duration %>
+        <%= f.number_field :duration %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<% if form %>
+  <%= form.label :director_id %>
+  <%= form.collection_select :director_id, Director.order(:name), :id, :name, {} %>
+<% else %>
+  <div id="<%= dom_id(@movie) %>_director_form">
+    <%= form_with(model: @movie, local: false) do |f| %>
+      <div>
+        <%= f.label :director_id %>
+        <%= f.collection_select :director_id, Director.order(:name), :id, :name, {}, onchange: 'Rails.fire(this.form, "submit")' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

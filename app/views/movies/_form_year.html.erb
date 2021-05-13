@@ -1,0 +1,13 @@
+<% if form %>
+  <%= form.label :year %>
+  <%= form.number_field :year %>
+<% else %>
+  <div id="<%= dom_id(@movie) %>_year_form">
+    <%= form_with(model: @movie, local: false) do |f| %>
+      <div>
+        <%= f.label :year %>
+        <%= f.number_field :year %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

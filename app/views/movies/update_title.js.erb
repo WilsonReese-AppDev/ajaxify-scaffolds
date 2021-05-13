@@ -1,0 +1,2 @@
+console.log("<%=dom_id(@movie)%>_title_form")
+$("#<%= dom_id(@movie) %>_title_form").replaceWith("<%= j( render "movies/movie_title", movie: @movie )%>");

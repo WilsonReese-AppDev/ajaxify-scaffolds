@@ -1,0 +1,23 @@
+<tr id="<%= dom_id(movie) %>">
+  <td>
+    <%= render "movies/movie_title", movie: movie%>
+  </td>
+
+  <td>
+    <%= render "movies/movie_year", movie: movie %>
+  </td>
+
+  <td>
+    <%= render "movies/movie_director", movie: movie %>
+  </td>
+
+  <td>
+    <%= render "movies/movie_description", movie: movie %>
+  </td>
+
+  <td>
+    <%= render "movies/movie_duration", movie: movie %>
+  </td>
+
+  <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }, remote: true %></td>
+</tr>

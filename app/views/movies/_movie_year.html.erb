@@ -1,0 +1,5 @@
+<div id="<%= dom_id(movie) %>_year">
+  <%= link_to edit_year_path(movie), remote: true do %>
+    <%= movie.year %>
+  <% end %>
+</div>
